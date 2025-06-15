@@ -1,4 +1,4 @@
-# 京都市における地域別消費傾向の可視化ツール
+# 京都市中心エリアの消費傾向の可視化
 
 ## 概要
 
@@ -16,37 +16,44 @@
 
 ## デモ
 
-下図は、特定期間における「衣料関連」業種の支出額を地理的に色分けした例である。
+下図は、2023年1月1日から2023年12月31日における東京都からの来訪者の総消費額を地理的に色分けした例である。
 
 ![demo](screenshots/map.png)
 
-マウスオーバーにより、町丁目ごとの詳細な情報（業種・年代・性別・居住地など）を表示できる。
+マウスオーバーにより、町丁目ごとの詳細な情報（郵便番号・住所・消費額・対数変換済みの消費額）を表示できる。
 
 ## ディレクトリ構成
 
+```plaintext
 kyoto-consumption-map/
 ├── data/
-│ └── dummy_data/ # ダミー化済みの分析用データ
+│   ├── dummy_data/
+│   │   ├── dummy_data.csv
+│   │   └── generate_dummy.py
+│   └── geojson/
+│       └── 京都市中心GeoJSONデータ_v3.geojson
 │
 ├── notebooks/
-│ └── analysis.ipynb # メインの可視化ノートブック
+│   ├── analysis.ipynb
+│   └── local_map.html
+│
+├── screenshots/
+│   └── map.png
 │
 ├── src/
-│ ├── preprocess.py # 前処理スクリプト
-│ ├── visualize.py # Folium可視化モジュール
-│ └── aggregate.py # 集計・分類用スクリプト
+│   ├── aggregate.py
+│   ├── classify.py
+│   ├── filter.py
+│   ├── heatmap.py
+│   ├── preprocess.py
+│   ├── visualize.py
+│   └── visualize_tool.py
 │
 ├── requirements.txt
 └── README.md
-
+```
 
 ## 実行方法
-
-```bash
-# 仮想環境の作成とパッケージインストール（例）
-python -m venv venv
-source venv/bin/activate   # Windowsでは venv\Scripts\activate
-pip install -r requirements.txt
 
 Jupyter Notebookを起動し、notebooks/analysis.ipynb を開くことで可視化処理を再現可能である。
 
